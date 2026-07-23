@@ -1,0 +1,395 @@
+{
+  "report_type": "azure_security_center_alerts",
+  "generated_at": "2026-07-23T01:19:18.722570+00:00",
+  "subscription_id": "demo-subscription-001",
+  "summary": {
+    "total": 7,
+    "high": 3,
+    "medium": 3,
+    "low": 1,
+    "critical_path": 4,
+    "active": 7,
+    "tactics": [
+      "Initial Access",
+      "Execution",
+      "Discovery",
+      "Impact",
+      "Credential Access",
+      "Lateral Movement"
+    ],
+    "affected_hosts": [
+      "DEV-VM-02",
+      "DEV-VM-03",
+      "PROD-VM-03",
+      "PROD-VM-01",
+      "DEV-VM-01",
+      "PROD-VM-02"
+    ],
+    "unique_ips": [
+      "45.33.32.156",
+      "10.0.1.42",
+      "185.220.101.45",
+      "194.165.16.72"
+    ]
+  },
+  "alerts": [
+    {
+      "priority_rank": 1,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-prod/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-001",
+      "name": "2024-alert-001",
+      "display_name": "Credential Dumping Tool Detected",
+      "description": "A tool associated with credential dumping activity (Mimikatz) was detected on the virtual machine PROD-VM-01. Attackers use these tools to harvest credentials from memory.",
+      "severity": "High",
+      "severity_score": 90,
+      "status": "Active",
+      "alert_type": "CREDENTIAL_DUMPING_TOOLS",
+      "start_time": "2026-07-22T23:19:18.722061+00:00",
+      "age_hours": 2.0,
+      "compromised_entity": "PROD-VM-01",
+      "resource_group": "rg-prod",
+      "is_critical_path": true,
+      "mitre": {
+        "technique": "T1003",
+        "name": "OS Credential Dumping",
+        "tactic": "Credential Access",
+        "url": "https://attack.mitre.org/techniques/T1003/"
+      },
+      "iocs": {
+        "ips": [],
+        "hosts": [
+          "PROD-VM-01"
+        ],
+        "accounts": [
+          "Administrator"
+        ]
+      },
+      "recommended_actions": [
+        "\u26a0\ufe0f  IMMEDIATE: Escalate to Tier 2 \u2014 critical-path indicator detected",
+        "Rotate all credentials on PROD-VM-01",
+        "Check for lateral movement using stolen credentials",
+        "Review privileged account activity in Azure AD sign-in logs",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Isolate the virtual machine from the network immediately",
+        "Collect volatile evidence before powering off",
+        "Rotate all credentials that may have been exposed",
+        "Review recent authentication events for lateral movement"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-001",
+      "extended_properties": {
+        "ProcessName": "powershell.exe",
+        "CommandLine": "Invoke-Mimikatz -DumpCreds",
+        "UserName": "PROD-VM-01\\Administrator",
+        "ParentProcess": "cmd.exe"
+      }
+    },
+    {
+      "priority_rank": 2,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-prod/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-002",
+      "name": "2024-alert-002",
+      "display_name": "Suspicious RDP Activity from External IP",
+      "description": "Suspicious Remote Desktop Protocol (RDP) activity was detected from an external IP address 185.220.101.45 to virtual machine PROD-VM-02. This IP is associated with known threat actor infrastructure.",
+      "severity": "High",
+      "severity_score": 90,
+      "status": "Active",
+      "alert_type": "SUSPICIOUS_RDP_ACTIVITY",
+      "start_time": "2026-07-23T00:19:18.722061+00:00",
+      "age_hours": 1.0,
+      "compromised_entity": "PROD-VM-02",
+      "resource_group": "rg-prod",
+      "is_critical_path": true,
+      "mitre": {
+        "technique": "T1021.001",
+        "name": "Remote Desktop Protocol",
+        "tactic": "Lateral Movement",
+        "url": "https://attack.mitre.org/techniques/T1021/001/"
+      },
+      "iocs": {
+        "ips": [
+          "185.220.101.45"
+        ],
+        "hosts": [
+          "PROD-VM-02"
+        ],
+        "accounts": []
+      },
+      "recommended_actions": [
+        "\u26a0\ufe0f  IMMEDIATE: Escalate to Tier 2 \u2014 critical-path indicator detected",
+        "Isolate PROD-VM-02 from internal network",
+        "Review east-west traffic in NSG flow logs",
+        "Check for additional compromised hosts via similar alerts",
+        "Block source IP 185.220.101.45 in Azure NSG and perimeter firewall",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Block the source IP 185.220.101.45 at NSG and perimeter firewall",
+        "Review RDP access logs for successful authentication",
+        "Restrict RDP access to VPN only via Network Security Group",
+        "Enable Just-in-Time VM access in Defender for Cloud"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-002",
+      "extended_properties": {
+        "SourceIP": "185.220.101.45",
+        "DestinationPort": "3389",
+        "ProtocolType": "TCP",
+        "AttemptsCount": "47"
+      }
+    },
+    {
+      "priority_rank": 3,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-prod/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-003",
+      "name": "2024-alert-003",
+      "display_name": "Ransomware-Like Behavior Detected",
+      "description": "Behavior consistent with ransomware was detected on PROD-VM-03. Multiple files were renamed with unknown extensions and shadow copies were deleted using vssadmin.",
+      "severity": "High",
+      "severity_score": 90,
+      "status": "Active",
+      "alert_type": "RANSOMWARE_BEHAVIOR",
+      "start_time": "2026-07-23T00:49:18.722061+00:00",
+      "age_hours": 0.5,
+      "compromised_entity": "PROD-VM-03",
+      "resource_group": "rg-prod",
+      "is_critical_path": true,
+      "mitre": {
+        "technique": "T1486",
+        "name": "Data Encrypted for Impact",
+        "tactic": "Impact",
+        "url": "https://attack.mitre.org/techniques/T1486/"
+      },
+      "iocs": {
+        "ips": [],
+        "hosts": [
+          "PROD-VM-03"
+        ],
+        "accounts": []
+      },
+      "recommended_actions": [
+        "\u26a0\ufe0f  IMMEDIATE: Escalate to Tier 2 \u2014 critical-path indicator detected",
+        "IMMEDIATELY isolate PROD-VM-03 from all networks",
+        "Check Azure Backup for pre-infection restore points",
+        "Notify CISO and Legal within 30 minutes",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "IMMEDIATELY isolate PROD-VM-03 from all network connections",
+        "Do NOT power off \u2014 preserve volatile evidence in RAM",
+        "Check Azure Backup for pre-infection restore points",
+        "Escalate to Tier 2 / DFIR team",
+        "Notify CISO and Legal within 30 minutes"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-003",
+      "extended_properties": {
+        "FilesEncrypted": "2847",
+        "NewExtension": ".locked",
+        "ShadowCopyDeleted": "True",
+        "RansomNoteFound": "DECRYPT_FILES.txt"
+      }
+    },
+    {
+      "priority_rank": 4,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-dev/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-005",
+      "name": "2024-alert-005",
+      "display_name": "Port Scan Activity Detected",
+      "description": "Internal host DEV-VM-02 performed a port scan against 45 internal IP addresses, probing ports 22, 445, 3389, and 1433. This may indicate lateral movement reconnaissance.",
+      "severity": "Medium",
+      "severity_score": 60,
+      "status": "Active",
+      "alert_type": "NETWORK_SCAN",
+      "start_time": "2026-07-22T21:19:18.722061+00:00",
+      "age_hours": 4.0,
+      "compromised_entity": "DEV-VM-02",
+      "resource_group": "rg-dev",
+      "is_critical_path": true,
+      "mitre": {
+        "technique": "T1046",
+        "name": "Network Service Discovery",
+        "tactic": "Discovery",
+        "url": "https://attack.mitre.org/techniques/T1046/"
+      },
+      "iocs": {
+        "ips": [
+          "10.0.1.42"
+        ],
+        "hosts": [
+          "DEV-VM-02"
+        ],
+        "accounts": []
+      },
+      "recommended_actions": [
+        "\u26a0\ufe0f  IMMEDIATE: Escalate to Tier 2 \u2014 critical-path indicator detected",
+        "Verify if scanning is from an authorized tool",
+        "Review NSG flow logs for follow-on exploitation attempts",
+        "Apply NSG rules to restrict east-west traffic",
+        "Block source IP 10.0.1.42 in Azure NSG and perimeter firewall",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Investigate DEV-VM-02 for signs of compromise",
+        "Check if this is authorized scanning (vulnerability scanner IP?)",
+        "Review network flow logs for successful connections after scan",
+        "Apply NSG rules to restrict lateral east-west traffic"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-005",
+      "extended_properties": {
+        "SourceIP": "10.0.1.42",
+        "PortsScanned": "22,445,3389,1433",
+        "TargetCount": "45",
+        "ScanDuration": "120 seconds"
+      }
+    },
+    {
+      "priority_rank": 5,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-dev/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-004",
+      "name": "2024-alert-004",
+      "display_name": "Suspicious PowerShell Execution Detected",
+      "description": "A PowerShell command with obfuscated, base64-encoded content was executed on DEV-VM-01. This technique is commonly used by attackers to evade detection.",
+      "severity": "Medium",
+      "severity_score": 60,
+      "status": "Active",
+      "alert_type": "SUSPICIOUS_POWERSHELL",
+      "start_time": "2026-07-22T22:19:18.722061+00:00",
+      "age_hours": 3.0,
+      "compromised_entity": "DEV-VM-01",
+      "resource_group": "rg-dev",
+      "is_critical_path": false,
+      "mitre": {
+        "technique": "T1059.001",
+        "name": "PowerShell",
+        "tactic": "Execution",
+        "url": "https://attack.mitre.org/techniques/T1059/001/"
+      },
+      "iocs": {
+        "ips": [],
+        "hosts": [
+          "DEV-VM-01"
+        ],
+        "accounts": [
+          "jsmith"
+        ]
+      },
+      "recommended_actions": [
+        "Decode and analyse the executed payload",
+        "Review parent process for initial infection vector",
+        "Check recent email and downloads on the host",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Review the decoded base64 payload to assess intent",
+        "Check parent process to determine initial infection vector",
+        "Enable PowerShell Script Block Logging",
+        "Review recent downloads and email attachments on this host"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-004",
+      "extended_properties": {
+        "CommandLine": "powershell.exe -EncodedCommand JABjAGwAaQBlAG4AdAAgAD0...",
+        "DecodedCommand": "[ANALYST: decode and review]",
+        "UserName": "DEV-VM-01\\jsmith",
+        "ParentProcess": "WINWORD.EXE"
+      }
+    },
+    {
+      "priority_rank": 6,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-prod/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-006",
+      "name": "2024-alert-006",
+      "display_name": "Unusual Azure Management Activity",
+      "description": "An unusual number of Azure management operations were performed from an unfamiliar location (IP: 194.165.16.72, Country: RU). Operations included listing storage account keys and modifying NSG rules.",
+      "severity": "Medium",
+      "severity_score": 60,
+      "status": "Active",
+      "alert_type": "UNUSUAL_AZURE_ACTIVITY",
+      "start_time": "2026-07-22T20:19:18.722061+00:00",
+      "age_hours": 5.0,
+      "compromised_entity": "Azure Subscription sub-001",
+      "resource_group": "N/A",
+      "is_critical_path": false,
+      "mitre": {
+        "technique": "T1078.004",
+        "name": "Cloud Accounts",
+        "tactic": "Initial Access",
+        "url": "https://attack.mitre.org/techniques/T1078/004/"
+      },
+      "iocs": {
+        "ips": [
+          "194.165.16.72"
+        ],
+        "hosts": [],
+        "accounts": [
+          "admin@company.com"
+        ]
+      },
+      "recommended_actions": [
+        "Review Azure AD sign-in logs for this identity",
+        "Check for MFA bypass or Conditional Access policy gaps",
+        "Revoke active sessions for the compromised identity",
+        "Block source IP 194.165.16.72 in Azure NSG and perimeter firewall",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Review Azure Activity Log for all operations from this IP",
+        "Rotate storage account access keys immediately",
+        "Revoke any tokens issued during this session",
+        "Enable Conditional Access policy requiring MFA from unfamiliar locations",
+        "Review and revert any NSG changes made during this session"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-006",
+      "extended_properties": {
+        "SourceIP": "194.165.16.72",
+        "Country": "RU",
+        "OperationsPerformed": "ListStorageAccountKeys, UpdateNetworkSecurityGroup, ListRoleAssignments",
+        "CallerIdentity": "admin@company.com"
+      }
+    },
+    {
+      "priority_rank": 7,
+      "id": "/subscriptions/sub-001/resourceGroups/rg-dev/providers/Microsoft.Security/locations/eastus/alerts/2024-alert-007",
+      "name": "2024-alert-007",
+      "display_name": "Multiple Failed Login Attempts on Azure VM",
+      "description": "47 failed SSH authentication attempts were detected against DEV-VM-03 from IP 45.33.32.156 within 10 minutes. Account admin was targeted.",
+      "severity": "Low",
+      "severity_score": 30,
+      "status": "Active",
+      "alert_type": "FAILED_BRUTE_FORCE",
+      "start_time": "2026-07-22T19:19:18.722061+00:00",
+      "age_hours": 6.0,
+      "compromised_entity": "DEV-VM-03",
+      "resource_group": "rg-dev",
+      "is_critical_path": false,
+      "mitre": {
+        "technique": "T1110",
+        "name": "Brute Force",
+        "tactic": "Credential Access",
+        "url": "https://attack.mitre.org/techniques/T1110/"
+      },
+      "iocs": {
+        "ips": [
+          "45.33.32.156"
+        ],
+        "hosts": [
+          "DEV-VM-03"
+        ],
+        "accounts": []
+      },
+      "recommended_actions": [
+        "Rotate all credentials on DEV-VM-03",
+        "Check for lateral movement using stolen credentials",
+        "Review privileged account activity in Azure AD sign-in logs",
+        "Block source IP 45.33.32.156 in Azure NSG and perimeter firewall",
+        "Document findings in ServiceNow/ticketing system with this report attached"
+      ],
+      "remediation_steps": [
+        "Block 45.33.32.156 at NSG inbound rules",
+        "Disable password authentication for SSH \u2014 use key pairs only",
+        "Enable Just-in-Time VM access to restrict SSH exposure",
+        "Review auth.log for any successful logins from this IP"
+      ],
+      "alert_uri": "https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-007",
+      "extended_properties": {
+        "SourceIP": "45.33.32.156",
+        "TargetPort": "22",
+        "FailedAttempts": "47",
+        "TargetAccount": "admin"
+      }
+    }
+  ]
+}

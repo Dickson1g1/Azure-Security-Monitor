@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Azure Security Center Alert Monitor</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f1117;color:#e8eaf0;line-height:1.6;padding-bottom:3rem}
+  a{color:#58a6ff} code{font-family:monospace}
+  details summary{list-style:none} details summary::-webkit-details-marker{display:none}
+</style>
+</head>
+<body>
+
+<div style="background:linear-gradient(135deg,#1a1f2e,#0d1117);border-bottom:1px solid #30363d;padding:1.5rem 2.5rem">
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.5rem">
+    <svg width="28" height="28" viewBox="0 0 18 18" fill="none"><path d="M9 1L1 5v8l8 4 8-4V5L9 1z" fill="#0078D4" opacity=".9"/></svg>
+    <h1 style="font-size:1.3rem;font-weight:600">Azure Defender for Cloud — Alert Monitor</h1>
+  </div>
+  <div style="font-size:.85rem;color:#8b949e">
+    Subscription: demo-subscription-001 &nbsp;·&nbsp; Generated: 2026-07-22 21:19 UTC &nbsp;·&nbsp;
+    Built by Dickson Boakye &nbsp;·&nbsp;
+    <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security" target="_blank">Open Defender for Cloud →</a>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;padding:1.5rem 2.5rem;background:#0d1117;border-bottom:1px solid #21262d">
+  <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem;text-align:center">
+    <div style="font-size:1.8rem;font-weight:600">7</div>
+    <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem">Total Alerts</div>
+  </div>
+  <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem;text-align:center">
+    <div style="font-size:1.8rem;font-weight:600;color:#dc4e41">3</div>
+    <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem">High Severity</div>
+  </div>
+  <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem;text-align:center">
+    <div style="font-size:1.8rem;font-weight:600;color:#f1813f">3</div>
+    <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem">Medium Severity</div>
+  </div>
+  <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem;text-align:center">
+    <div style="font-size:1.8rem;font-weight:600;color:#3fb950">1</div>
+    <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem">Low Severity</div>
+  </div>
+  <div style="background:#161b22;border:1px solid #dc4e4144;border-radius:8px;padding:1rem;text-align:center">
+    <div style="font-size:1.8rem;font-weight:600;color:#dc4e41">4</div>
+    <div style="font-size:.75rem;color:#8b949e;text-transform:uppercase;letter-spacing:.05em;margin-top:.2rem">Critical Path</div>
+  </div>
+</div>
+
+<div style="padding:1.5rem 2.5rem">
+  <div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1rem;margin-bottom:1.5rem">
+    <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.5rem">Tactics Covered</div>
+    <span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Initial Access</span><span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Execution</span><span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Discovery</span><span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Impact</span><span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Credential Access</span><span style="background:#21262d;padding:3px 10px;border-radius:20px;font-size:.75rem;margin:.2rem;display:inline-block">Lateral Movement</span>
+    <div style="margin-top:.75rem"><div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Affected Hosts</div><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">DEV-VM-02</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">DEV-VM-03</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">PROD-VM-03</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">PROD-VM-01</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">DEV-VM-01</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#79c0ff">PROD-VM-02</code></div>
+    <div style="margin-top:.75rem"><div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">IOC IPs</div><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#f85149">45.33.32.156</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#f85149">10.0.1.42</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#f85149">185.220.101.45</code><code style="background:#21262d;padding:2px 8px;border-radius:4px;font-size:.75rem;margin:.2rem;display:inline-block;color:#f85149">194.165.16.72</code></div>
+  </div>
+
+  <h2 style="font-size:1rem;font-weight:600;margin-bottom:1rem">Alerts — Prioritized</h2>
+  
+<div style="background:#161b22;border:1px solid #dc4e41;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  <div style="background:#dc4e4122;border-left:3px solid #dc4e41;padding:6px 12px;margin-bottom:10px;font-size:.8rem;color:#dc4e41;font-weight:600">⚠ CRITICAL PATH — Immediate action required</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#1</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Credential Dumping Tool Detected</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#dc4e41;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">High</span>
+      <span style="background:#e67e2222;color:#e67e22;border:1px solid #e67e2244;padding:2px 8px;border-radius:4px;font-size:.72rem">Credential Access</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">A tool associated with credential dumping activity (Mimikatz) was detected on the virtual machine PROD-VM-01. Attackers use these tools to harvest credentials from memory.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> PROD-VM-01</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-prod</div>
+    <div><span style="color:#8b949e">Age:</span> 2.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1003/" target="_blank" style="color:#58a6ff">T1003</a> OS Credential Dumping</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">PROD-VM-01</code></div><div><span style="color:#8b949e;font-size:.75rem">Accounts:</span> <code style="color:#f0883e">Administrator</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">⚠️  IMMEDIATE: Escalate to Tier 2 — critical-path indicator detected</li><li style="margin-bottom:4px">Rotate all credentials on PROD-VM-01</li><li style="margin-bottom:4px">Check for lateral movement using stolen credentials</li><li style="margin-bottom:4px">Review privileged account activity in Azure AD sign-in logs</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Isolate the virtual machine from the network immediately</li><li style="margin-bottom:4px">Collect volatile evidence before powering off</li><li style="margin-bottom:4px">Rotate all credentials that may have been exposed</li><li style="margin-bottom:4px">Review recent authentication events for lateral movement</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ProcessName</td><td style="font-size:.75rem;word-break:break-all">powershell.exe</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">CommandLine</td><td style="font-size:.75rem;word-break:break-all">Invoke-Mimikatz -DumpCreds</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">UserName</td><td style="font-size:.75rem;word-break:break-all">PROD-VM-01\Administrator</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ParentProcess</td><td style="font-size:.75rem;word-break:break-all">cmd.exe</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-001" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #dc4e41;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  <div style="background:#dc4e4122;border-left:3px solid #dc4e41;padding:6px 12px;margin-bottom:10px;font-size:.8rem;color:#dc4e41;font-weight:600">⚠ CRITICAL PATH — Immediate action required</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#2</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Suspicious RDP Activity from External IP</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#dc4e41;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">High</span>
+      <span style="background:#e74c3c22;color:#e74c3c;border:1px solid #e74c3c44;padding:2px 8px;border-radius:4px;font-size:.72rem">Lateral Movement</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">Suspicious Remote Desktop Protocol (RDP) activity was detected from an external IP address 185.220.101.45 to virtual machine PROD-VM-02. This IP is associated with known threat actor infrastructure.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> PROD-VM-02</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-prod</div>
+    <div><span style="color:#8b949e">Age:</span> 1.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1021/001/" target="_blank" style="color:#58a6ff">T1021.001</a> Remote Desktop Protocol</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">IPs:</span> <code style="color:#f85149">185.220.101.45</code></div><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">PROD-VM-02</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">⚠️  IMMEDIATE: Escalate to Tier 2 — critical-path indicator detected</li><li style="margin-bottom:4px">Isolate PROD-VM-02 from internal network</li><li style="margin-bottom:4px">Review east-west traffic in NSG flow logs</li><li style="margin-bottom:4px">Check for additional compromised hosts via similar alerts</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Block the source IP 185.220.101.45 at NSG and perimeter firewall</li><li style="margin-bottom:4px">Review RDP access logs for successful authentication</li><li style="margin-bottom:4px">Restrict RDP access to VPN only via Network Security Group</li><li style="margin-bottom:4px">Enable Just-in-Time VM access in Defender for Cloud</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">SourceIP</td><td style="font-size:.75rem;word-break:break-all">185.220.101.45</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">DestinationPort</td><td style="font-size:.75rem;word-break:break-all">3389</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ProtocolType</td><td style="font-size:.75rem;word-break:break-all">TCP</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">AttemptsCount</td><td style="font-size:.75rem;word-break:break-all">47</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-002" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #dc4e41;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  <div style="background:#dc4e4122;border-left:3px solid #dc4e41;padding:6px 12px;margin-bottom:10px;font-size:.8rem;color:#dc4e41;font-weight:600">⚠ CRITICAL PATH — Immediate action required</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#3</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Ransomware-Like Behavior Detected</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#dc4e41;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">High</span>
+      <span style="background:#922b2122;color:#922b21;border:1px solid #922b2144;padding:2px 8px;border-radius:4px;font-size:.72rem">Impact</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">Behavior consistent with ransomware was detected on PROD-VM-03. Multiple files were renamed with unknown extensions and shadow copies were deleted using vssadmin.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> PROD-VM-03</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-prod</div>
+    <div><span style="color:#8b949e">Age:</span> 0.5h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1486/" target="_blank" style="color:#58a6ff">T1486</a> Data Encrypted for Impact</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">PROD-VM-03</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">⚠️  IMMEDIATE: Escalate to Tier 2 — critical-path indicator detected</li><li style="margin-bottom:4px">IMMEDIATELY isolate PROD-VM-03 from all networks</li><li style="margin-bottom:4px">Check Azure Backup for pre-infection restore points</li><li style="margin-bottom:4px">Notify CISO and Legal within 30 minutes</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">IMMEDIATELY isolate PROD-VM-03 from all network connections</li><li style="margin-bottom:4px">Do NOT power off — preserve volatile evidence in RAM</li><li style="margin-bottom:4px">Check Azure Backup for pre-infection restore points</li><li style="margin-bottom:4px">Escalate to Tier 2 / DFIR team</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">FilesEncrypted</td><td style="font-size:.75rem;word-break:break-all">2847</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">NewExtension</td><td style="font-size:.75rem;word-break:break-all">.locked</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ShadowCopyDeleted</td><td style="font-size:.75rem;word-break:break-all">True</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">RansomNoteFound</td><td style="font-size:.75rem;word-break:break-all">DECRYPT_FILES.txt</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-003" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #dc4e41;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  <div style="background:#dc4e4122;border-left:3px solid #dc4e41;padding:6px 12px;margin-bottom:10px;font-size:.8rem;color:#dc4e41;font-weight:600">⚠ CRITICAL PATH — Immediate action required</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#4</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Port Scan Activity Detected</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#f1813f;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">Medium</span>
+      <span style="background:#1abc9c22;color:#1abc9c;border:1px solid #1abc9c44;padding:2px 8px;border-radius:4px;font-size:.72rem">Discovery</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">Internal host DEV-VM-02 performed a port scan against 45 internal IP addresses, probing ports 22, 445, 3389, and 1433. This may indicate lateral movement reconnaissance.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> DEV-VM-02</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-dev</div>
+    <div><span style="color:#8b949e">Age:</span> 4.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1046/" target="_blank" style="color:#58a6ff">T1046</a> Network Service Discovery</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">IPs:</span> <code style="color:#f85149">10.0.1.42</code></div><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">DEV-VM-02</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">⚠️  IMMEDIATE: Escalate to Tier 2 — critical-path indicator detected</li><li style="margin-bottom:4px">Verify if scanning is from an authorized tool</li><li style="margin-bottom:4px">Review NSG flow logs for follow-on exploitation attempts</li><li style="margin-bottom:4px">Apply NSG rules to restrict east-west traffic</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Investigate DEV-VM-02 for signs of compromise</li><li style="margin-bottom:4px">Check if this is authorized scanning (vulnerability scanner IP?)</li><li style="margin-bottom:4px">Review network flow logs for successful connections after scan</li><li style="margin-bottom:4px">Apply NSG rules to restrict lateral east-west traffic</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">SourceIP</td><td style="font-size:.75rem;word-break:break-all">10.0.1.42</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">PortsScanned</td><td style="font-size:.75rem;word-break:break-all">22,445,3389,1433</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">TargetCount</td><td style="font-size:.75rem;word-break:break-all">45</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ScanDuration</td><td style="font-size:.75rem;word-break:break-all">120 seconds</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-005" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#5</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Suspicious PowerShell Execution Detected</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#f1813f;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">Medium</span>
+      <span style="background:#f39c1222;color:#f39c12;border:1px solid #f39c1244;padding:2px 8px;border-radius:4px;font-size:.72rem">Execution</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">A PowerShell command with obfuscated, base64-encoded content was executed on DEV-VM-01. This technique is commonly used by attackers to evade detection.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> DEV-VM-01</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-dev</div>
+    <div><span style="color:#8b949e">Age:</span> 3.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1059/001/" target="_blank" style="color:#58a6ff">T1059.001</a> PowerShell</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">DEV-VM-01</code></div><div><span style="color:#8b949e;font-size:.75rem">Accounts:</span> <code style="color:#f0883e">jsmith</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Decode and analyse the executed payload</li><li style="margin-bottom:4px">Review parent process for initial infection vector</li><li style="margin-bottom:4px">Check recent email and downloads on the host</li><li style="margin-bottom:4px">Document findings in ServiceNow/ticketing system with this report attached</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Review the decoded base64 payload to assess intent</li><li style="margin-bottom:4px">Check parent process to determine initial infection vector</li><li style="margin-bottom:4px">Enable PowerShell Script Block Logging</li><li style="margin-bottom:4px">Review recent downloads and email attachments on this host</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">CommandLine</td><td style="font-size:.75rem;word-break:break-all">powershell.exe -EncodedCommand JABjAGwAaQBlAG4AdAAgAD0...</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">DecodedCommand</td><td style="font-size:.75rem;word-break:break-all">[ANALYST: decode and review]</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">UserName</td><td style="font-size:.75rem;word-break:break-all">DEV-VM-01\jsmith</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">ParentProcess</td><td style="font-size:.75rem;word-break:break-all">WINWORD.EXE</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-004" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#6</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Unusual Azure Management Activity</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#f1813f;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">Medium</span>
+      <span style="background:#dc4e4122;color:#dc4e41;border:1px solid #dc4e4144;padding:2px 8px;border-radius:4px;font-size:.72rem">Initial Access</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">An unusual number of Azure management operations were performed from an unfamiliar location (IP: 194.165.16.72, Country: RU). Operations included listing storage account keys and modifying NSG rules.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> Azure Subscription sub-001</div>
+    <div><span style="color:#8b949e">Resource group:</span> N/A</div>
+    <div><span style="color:#8b949e">Age:</span> 5.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1078/004/" target="_blank" style="color:#58a6ff">T1078.004</a> Cloud Accounts</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">IPs:</span> <code style="color:#f85149">194.165.16.72</code></div><div><span style="color:#8b949e;font-size:.75rem">Accounts:</span> <code style="color:#f0883e">admin@company.com</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Review Azure AD sign-in logs for this identity</li><li style="margin-bottom:4px">Check for MFA bypass or Conditional Access policy gaps</li><li style="margin-bottom:4px">Revoke active sessions for the compromised identity</li><li style="margin-bottom:4px">Block source IP 194.165.16.72 in Azure NSG and perimeter firewall</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Review Azure Activity Log for all operations from this IP</li><li style="margin-bottom:4px">Rotate storage account access keys immediately</li><li style="margin-bottom:4px">Revoke any tokens issued during this session</li><li style="margin-bottom:4px">Enable Conditional Access policy requiring MFA from unfamiliar locations</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">SourceIP</td><td style="font-size:.75rem;word-break:break-all">194.165.16.72</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">Country</td><td style="font-size:.75rem;word-break:break-all">RU</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">OperationsPerformed</td><td style="font-size:.75rem;word-break:break-all">ListStorageAccountKeys, UpdateNetworkSecurityGroup, ListRoleAssignments</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">CallerIdentity</td><td style="font-size:.75rem;word-break:break-all">admin@company.com</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-006" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+<div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:1.25rem;margin-bottom:1rem">
+  
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap">
+    <div>
+      <span style="color:#8b949e;font-size:.8rem">#7</span>
+      <span style="font-weight:600;font-size:1rem;color:#e8eaf0;margin-left:.5rem">Multiple Failed Login Attempts on Azure VM</span>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+      <span style="background:#3fb950;color:#fff;padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600">Low</span>
+      <span style="background:#e67e2222;color:#e67e22;border:1px solid #e67e2244;padding:2px 8px;border-radius:4px;font-size:.72rem">Credential Access</span>
+    </div>
+  </div>
+  <p style="font-size:.875rem;color:#8b949e;margin-bottom:.75rem">47 failed SSH authentication attempts were detected against DEV-VM-03 from IP 45.33.32.156 within 10 minutes. Account admin was targeted.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;font-size:.8rem;margin-bottom:.75rem">
+    <div><span style="color:#8b949e">Entity:</span> DEV-VM-03</div>
+    <div><span style="color:#8b949e">Resource group:</span> rg-dev</div>
+    <div><span style="color:#8b949e">Age:</span> 6.0h ago</div>
+    <div><span style="color:#8b949e">MITRE:</span> <a href="https://attack.mitre.org/techniques/T1110/" target="_blank" style="color:#58a6ff">T1110</a> Brute Force</div>
+  </div>
+  <div style="margin-bottom:.75rem"><div><span style="color:#8b949e;font-size:.75rem">IPs:</span> <code style="color:#f85149">45.33.32.156</code></div><div><span style="color:#8b949e;font-size:.75rem">Hosts:</span> <code style="color:#79c0ff">DEV-VM-03</code></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#0d1117;border-radius:6px;padding:1rem;margin-bottom:.75rem">
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Recommended Actions</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Rotate all credentials on DEV-VM-03</li><li style="margin-bottom:4px">Check for lateral movement using stolen credentials</li><li style="margin-bottom:4px">Review privileged account activity in Azure AD sign-in logs</li><li style="margin-bottom:4px">Block source IP 45.33.32.156 in Azure NSG and perimeter firewall</li></ul>
+    </div>
+    <div>
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:#8b949e;margin-bottom:.4rem">Azure Remediation Steps</div>
+      <ul style="padding-left:1.2rem;font-size:.8rem;color:#cdd9e5;margin:0"><li style="margin-bottom:4px">Block 45.33.32.156 at NSG inbound rules</li><li style="margin-bottom:4px">Disable password authentication for SSH — use key pairs only</li><li style="margin-bottom:4px">Enable Just-in-Time VM access to restrict SSH exposure</li><li style="margin-bottom:4px">Review auth.log for any successful logins from this IP</li></ul>
+    </div>
+  </div>
+  <details><summary style="font-size:.75rem;color:#8b949e;cursor:pointer">Extended properties</summary><table style="margin-top:.5rem"><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">SourceIP</td><td style="font-size:.75rem;word-break:break-all">45.33.32.156</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">TargetPort</td><td style="font-size:.75rem;word-break:break-all">22</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">FailedAttempts</td><td style="font-size:.75rem;word-break:break-all">47</td></tr><tr><td style="color:#8b949e;padding:2px 8px 2px 0;font-size:.75rem">TargetAccount</td><td style="font-size:.75rem;word-break:break-all">admin</td></tr></table></details>
+  <a href="https://portal.azure.com/#blade/Microsoft_Azure_Security/AlertBlade/alertId/2024-alert-007" target="_blank" style="font-size:.8rem;color:#58a6ff">View in Azure Portal →</a>
+</div>
+</div>
+
+<div style="text-align:center;font-size:.8rem;color:#8b949e;padding-top:2rem;border-top:1px solid #21262d;margin:0 2.5rem">
+  Microsoft Azure Defender for Cloud &nbsp;·&nbsp; github.com/Dickson1g1/azure-security-monitor
+</div>
+</body>
+</html>
