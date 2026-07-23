@@ -1,0 +1,6 @@
+azure-mgmt-security>=3.0.0
+azure-identity>=1.15.0
+azure-mgmt-resource>=23.0.0
+python-dotenv>=1.0.0
+colorama>=0.4.6
+requests>=2.31.0
